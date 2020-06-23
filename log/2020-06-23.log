@@ -1,0 +1,2 @@
+2020/06/23 19:47:45 server.go:58: Listen on 127.0.0.1:22221 with TLS + Token + Interceptor
+2020/06/23 20:03:04 server.go:58: Listen on 127.0.0.1:22221 with TLS + Token + Interceptor
