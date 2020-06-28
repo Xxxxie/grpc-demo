@@ -1,11 +1,19 @@
 syntax = "proto3";
 package api;
 
+import "google/api/annotations.proto";
+
 // 定义一个服务
 service Greeter {
 
     // 定义服务中的一个api
     rpc SayHello (HelloRequest) returns (HelloReply) {
+        
+        // http option
+        option (google.api.http) = {
+            post: "/Greeter"
+            body: "*"
+        };
     }
 }
 

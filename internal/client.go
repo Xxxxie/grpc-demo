@@ -10,7 +10,7 @@ import(
 )
 
 const (
-    address ="localhost:22221"
+    address ="127.0.0.1:22221"
     defaultName = "world"
 
     // TLS认证选项
@@ -41,7 +41,7 @@ func main() {
 
     if OpenTLS{
         // 添加证书
-        creds, err := credentials.NewClientTLSFromFile("../keys/server.pem","hello")
+        creds, err := credentials.NewClientTLSFromFile("../keys/server.pem","test")
         if err !=nil {
             log.Fatalf("Failed to create TLS credentials %v", err)
         }
