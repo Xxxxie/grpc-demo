@@ -3,11 +3,13 @@ module grpc-demo
 go 1.14
 
 require (
-	github.com/gogo/protobuf v1.3.1 // indirect
-	github.com/golang/protobuf v1.4.0
+	github.com/golang/protobuf v1.4.3
 	github.com/grpc-ecosystem/grpc-gateway v1.12.1
-	google.golang.org/genproto v0.0.0-20190927181202-20e1ac93f88c
-	google.golang.org/grpc v1.28.1
-	google.golang.org/protobuf v1.21.0
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.1.0
+	golang.org/x/net v0.0.0-20200822124328-c89045814202
+	google.golang.org/genproto v0.0.0-20210106152847-07624b53cd92
+	google.golang.org/grpc v1.34.0
+	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.1.0
+	google.golang.org/protobuf v1.25.0
 
 )
