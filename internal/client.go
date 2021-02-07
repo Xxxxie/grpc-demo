@@ -10,8 +10,8 @@ import(
 )
 
 const (
-    address ="127.0.0.1:22221"
-    defaultName = "world"
+    //address ="127.0.0.1:22222"
+    //defaultName = "world"
 
     // TLS认证选项
     OpenTLS = true
@@ -51,7 +51,8 @@ func main() {
     }
 
     // 添加自定义token认证
-    opts = append(opts, grpc.WithPerRPCCredentials(new(customCredential)))
+
+    //opts = append(opts, grpc.WithPerRPCCredentials(new(customCredential)))
 
     // 构建connect
     conn, err := grpc.Dial(address, opts...)

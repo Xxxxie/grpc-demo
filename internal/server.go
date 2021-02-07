@@ -26,24 +26,24 @@ import(
     "google.golang.org/grpc/codes"
 )
 
-const (
-    address = "127.0.0.1:22221"
-)
 
 var logger *log.Logger
 
+
 func main() {
+
+    var address = "127.0.0.1:22222"
     lis, err := net.Listen("tcp", address)
     logFilePath := initlog()
     if err !=nil{
         logger.Fatalf("failed to listen: %v", err)
     }
 
+
     // TLS认证
     creds, err := credentials.NewServerTLSFromFile("../keys/server.pem", "../keys/server.key")
-
     if err != nil {
-        logger.Fatalf("Failed to generate credentials %v", err)
+       logger.Fatalf("Failed to generate credentials %v", err)
     }
     
     // 服务选项
@@ -51,7 +51,7 @@ func main() {
     // 添加TLS认证
     opts = append(opts, grpc.Creds(creds))
     // 添加拦截器
-    opts = append(opts, grpc.UnaryInterceptor(InterceptChain(interceptor1, interceptor2)))
+    //opts = append(opts, grpc.UnaryInterceptor(InterceptChain(interceptor1, interceptor2)))
 
     // 在实例化之前添加拦截器
     // 实例化servers
@@ -102,7 +102,7 @@ func main() {
         },
     }
 
-    logger.Printf("grpc and https on port: %d\n", 22221)
+    logger.Printf("grpc and https on port: %d\n", 22222)
     err = srv.Serve(tls.NewListener(lis, srv.TLSConfig))
 
     reflection.Register(s)
@@ -122,10 +122,12 @@ func main() {
 // 初始化log,将log同时输出在log文件和控制台上
 func initlog() string {
     file := "../log/" + time.Now().Format("2006-01-02") + ".log"
+    fmt.Println(file)
     _,err :=os.Stat(file)
     var f *os.File
     if  err!=nil{
         f, _=os.Create(file)
+        fmt.Println(file)
     }else{
         //如果存在文件则 追加log
         f ,_= os.OpenFile(file,os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
@@ -183,10 +185,10 @@ func interceptor1(ctx context.Context, req interface{}, info *grpc.UnaryServerIn
     
     fmt.Println("Using the interceptor1")
     // 添加Token校验
-    err = auth(ctx)
-    if err != nil {
-        return 
-    }
+    //err = auth(ctx)
+    //if err != nil {
+    //    return
+    //}
     // 校验通过后继续处理请求
     return handler(ctx, req)
 }
